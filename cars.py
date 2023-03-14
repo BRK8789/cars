@@ -5,27 +5,28 @@ import seaborn as sns
 import streamlit as st
 from PIL import Image
 logo = Image.open('swrnlogo.png')
+# Define the list of names
+names = ["21A21A6113-G.Karthik Bhaskar", "21A21A6133-L.Harsha Vardhan", "21A21A6108-G.Swarupa","21A21A6120-K.Prasad","21A21A6110-D.Shyam","21A21A6128-K.Syamala Devi","21A21A6122-K.Uma Sai Surya","21A21A6108-B.Krishna Sai Ram"]
 
 #pip install pandas numpy matplotlib seaborn streamlit
 #to run strealit :   streamlit run test2.py 
 st.set_page_config(page_title="Weather Dataset  EDA", page_icon=":bar_chart:", layout="wide")
 st.image(logo)
 st.title("CAR DATA SET EDA")
+# Add the names to the sidebar
+st.sidebar.title("Project Team Members:")
+
+for name in names:
+    st.sidebar.write(name)
+st.sidebar.title("Under The Guidance of :")
+st.sidebar.write("Dr.Bomma.Ramakrishna")
 # File upload
 uploaded_file = st.file_uploader("Choose CARS DATA SET csv")
 if uploaded_file is not None:
     car=pd.read_csv(uploaded_file)
     st.dataframe(car)
-    # Define the list of names
-    names = ["21A21A6113-G.Karthik Bhaskar", "21A21A6133-L.Harsha Vardhan", "21A21A6108-G.Swarupa","21A21A6120-K.Prasad","21A21A6110-D.Shyam","21A21A6128-K.Syamala Devi","21A21A6122-K.Uma Sai Surya","21A21A6108-B.Krishna Sai Ram"]
-
-    # Add the names to the sidebar
-    st.sidebar.title("Project Team Members:")
-
-    for name in names:
-        st.sidebar.write(name)
-    st.sidebar.title("Under The Guidance of :")
-    st.sidebar.write("Dr.Bomma.Ramakrishna")
+    
+    
     # Data Cleaning
     null_values = car.isnull().sum()
     if any(null_values):
